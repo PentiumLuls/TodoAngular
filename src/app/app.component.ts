@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-root',
@@ -6,5 +6,83 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  title = 'todoAngular';
+  title = '~TODO app~';
+  tasksData = {
+    lists: [
+      {
+        id: 0,
+        name: 'Tasks tutorial'
+      },
+      {
+        id: 1,
+        name: 'Personal'
+      },
+      {
+        name: 'newList',
+        id: 2
+      }
+    ],
+    tasks: [
+      {
+        id: 0,
+        name: 'You can add new task: type it and press \'Add\' button',
+        list: 'Tasks tutorial',
+        checked: false
+      },
+      {
+        id: 1,
+        name: 'You should`nt be able to see this',
+        list: 'testList',
+        checked: false
+      },
+      {
+        id: 2,
+        name: 'Click on task to complete it',
+        list: 'Tasks tutorial',
+        checked: true
+      },
+      {
+        id: 3,
+        name: 'Delete task by pressing \'x\' button on it',
+        list: 'Tasks tutorial',
+        checked: true
+      },
+      {
+        id: 4,
+        name: 'Edit task -> click on \'Edit\' button',
+        list: 'Tasks tutorial',
+        checked: true
+      },
+      {
+        id: 5,
+        name: 'uughhh... Some boring info',
+        list: 'Personal',
+        checked: false
+      },
+      {
+        name: 'task1',
+        checked: true,
+        list: 'newList',
+        id: 6
+      },
+      {
+        name: 'task2',
+        checked: true,
+        list: 'newList',
+        id: 7
+      },
+      {
+        name: 'task3 changed',
+        checked: false,
+        list: 'newList',
+        id: 8
+      },
+      {
+        name: 'task5',
+        checked: false,
+        list: 'newList',
+        id: 10
+      }
+    ]
+  };
 }
