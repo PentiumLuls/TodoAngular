@@ -16,7 +16,6 @@ export class TasksListComponent implements OnInit {
   }
 
   addNewTask() {
-    console.log(this.tasks);
     if (this.inputValue === '') {
       alert('Please type your task before adding it');
     } else {
@@ -27,8 +26,8 @@ export class TasksListComponent implements OnInit {
     }
   }
 
-  taskClicked(event, i) {
-      this.toggleTaskChecked.emit({name: event.target.innerHTML, index: i});
+  taskClicked(index) {
+      this.toggleTaskChecked.emit(index);
   }
 
   ngOnInit() {

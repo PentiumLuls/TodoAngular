@@ -1,1 +1,9 @@
-<li >{{task.name}}</li>
+<li *ngIf="task.checked === true else taskNotChecked" [class.checked]="true">
+  {{task.name}}
+</li>
+
+<ng-template #taskNotChecked>
+  <li [class.checked]="false">
+    {{task.name}}
+  </li>
+</ng-template>

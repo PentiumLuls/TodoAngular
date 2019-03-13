@@ -8,7 +8,7 @@
   id="tasks"
 >
   <app-task *ngFor="let task of tasks.tasks; let i = index;"
-            (click)="taskClicked($event, i)"
+            (click)="taskClicked(i)"
             [task]="task">
   </app-task>
 </ul>
