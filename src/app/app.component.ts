@@ -65,4 +65,12 @@ export class AppComponent {
   addNewTask(task: any) {
     this.tasksData.tasks.push(task);
   }
+
+  toggleTaskChecked(obj: any) {
+    const taskName = obj.name;
+    const index = obj.index;
+    console.log(taskName, index);
+    this.tasksData.tasks[index].checked = !this.tasksData.tasks[index].checked;
+    console.log(this.tasksData.tasks);
+  }
 }

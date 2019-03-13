@@ -10,6 +10,7 @@ export class TasksListComponent implements OnInit {
 
   @Input() tasks: any;
   @Output() addNewTaskToData: EventEmitter<any> = new EventEmitter();
+  @Output() toggleTaskChecked = new EventEmitter();
 
   constructor() {
   }
@@ -20,10 +21,14 @@ export class TasksListComponent implements OnInit {
       alert('Please type your task before adding it');
     } else {
       // TODO add list to task also
-      const task = {name: this.inputValue, checked: false, };
+      const task = {name: this.inputValue, checked: false};
       this.inputValue = '';
       this.addNewTaskToData.emit(task);
     }
+  }
+
+  taskClicked(event, i) {
+      this.toggleTaskChecked.emit({name: event.target.innerHTML, index: i});
   }
 
   ngOnInit() {

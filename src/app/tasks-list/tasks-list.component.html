@@ -3,9 +3,13 @@
   <span (click)="addNewTask()" id="task-add-button">Add</span>
 </header>
 
-<ul *ngIf="tasks.tasks.length > 0 else tasksAmount0" id="tasks">
-  <app-task *ngFor="let task of tasks.tasks"
-    [task]="task">
+<ul
+  *ngIf="tasks.tasks.length > 0 else tasksAmount0"
+  id="tasks"
+>
+  <app-task *ngFor="let task of tasks.tasks; let i = index;"
+            (click)="taskClicked($event, i)"
+            [task]="task">
   </app-task>
 </ul>
 

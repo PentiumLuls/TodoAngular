@@ -5,6 +5,7 @@
     </div>
     <app-tasks-list
       (addNewTaskToData)="addNewTask($event)"
+      (toggleTaskChecked)="toggleTaskChecked($event)"
       [tasks]="tasksData">
     </app-tasks-list>
   </div>
