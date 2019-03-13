@@ -13,11 +13,9 @@
 
   <div id="task-lists-container">
     <h3>Task lists</h3>
-    <header>
-      <input type="text" id="new-list-input" placeholder="New list title">
-      <span onclick="alert('newList')" id="lists-add-button">Add</span>
-    </header>
-    <ul id="task-lists"></ul>
+    <app-lists-list
+    (addNewList)="addNewList($event)">
+    </app-lists-list>
   </div>
 </div>
 

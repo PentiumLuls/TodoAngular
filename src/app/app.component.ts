@@ -62,6 +62,7 @@ export class AppComponent {
     ]
   };
 
+  // TASKS
   addNewTask(task: any) {
     this.tasksData.tasks.push(task);
   }
@@ -72,5 +73,12 @@ export class AppComponent {
 
   toggleTaskChecked(index) {
     this.tasksData.tasks[index].checked = !this.tasksData.tasks[index].checked;
+  }
+
+  // LISTS
+  addNewList(listName) {
+    const newList = {id: this.tasksData.lists.length, name: listName};
+    this.tasksData.lists.push(newList);
+    console.log(this.tasksData.lists);
   }
 }
