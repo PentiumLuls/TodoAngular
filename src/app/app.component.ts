@@ -72,6 +72,12 @@ export class AppComponent {
     this.tasksData.tasks[index].checked = !this.tasksData.tasks[index].checked;
   }
 
+  changeTaskName(obj) {
+    const name = obj.name;
+    const index = obj.index;
+    this.tasksData.tasks[index].name = name;
+  }
+
   // LISTS
   addNewList(listName) {
     let newId = -1;

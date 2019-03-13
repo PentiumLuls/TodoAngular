@@ -41,3 +41,53 @@ li.checked::before {
   background: #f44336;
   color: white;
 }
+
+.task-edit-button {
+  position: absolute;
+  top: 0;
+  right: 40px;
+  padding: 12px 30px 12px 30px;
+}
+
+.task-edit-button:hover {
+  background: darkgray;
+  color: white;
+}
+
+/*EDITING*/
+
+.edit-save-button {
+  position: absolute;
+  top: 0;
+  right: 90px;
+  padding: 21px 16px 21px 16px;
+}
+
+.edit-save-button:hover {
+  background: darkgray;
+  color: white;
+}
+
+.edit-cancel-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 21px 10px 21px 10px;
+}
+
+.edit-cancel-button:hover {
+  background: #f44336;
+  color: white;
+}
+
+#input-text {
+  margin: 0;
+  padding: 0 3px;
+  /*color: inherit;*/
+  width: 70%;
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: inherit;
+  line-height: 1.8;
+  border: none;
+}

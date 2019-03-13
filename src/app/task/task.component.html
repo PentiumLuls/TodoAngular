@@ -1,15 +1,24 @@
-<li *ngIf="task.checked === true && task.list === currentListId else taskNotChecked" [class.checked]="true">
+<li *ngIf="task.checked === true && isEditing === false && task.list === currentListId else taskNotChecked"
+    [class.checked]="true">
   {{task.name}}
+  <span class="task-edit-button"
+        (click)="editTaskClicked()">
+    EDIT
+  </span>
   <span class="task-delete-button"
-    (click)="deleteTaskClicked()">
+        (click)="deleteTaskClicked()">
     ×
   </span>
 </li>
 
 <ng-template #taskNotChecked>
-  <li *ngIf="task.list === currentListId else notInThisList"
-    [class.checked]="false">
+  <li *ngIf="task.list === currentListId && isEditing === false else editing"
+      [class.checked]="false">
     {{task.name}}
+    <span class="task-edit-button"
+          (click)="editTaskClicked()">
+    EDIT
+  </span>
     <span class="task-delete-button"
           (click)="deleteTaskClicked()">
     ×
@@ -17,6 +26,19 @@
   </li>
 </ng-template>
 
-<ng-template #notInThisList>
+<ng-template #editing>
+  <li *ngIf="task.list === currentListId && isEditing === true else notInThisList">
+    <input [(ngModel)]="inputValue" type="text" id="input-text" placeholder="">
+    <span class="edit-save-button"
+    (click)="saveEditChanges()">
+    SAVE
+  </span>
+    <span class="edit-cancel-button"
+    (click)="cancelEditChanges()">
+    CANCEL
+  </span>
+  </li>
+</ng-template>
 
+<ng-template #notInThisList>
 </ng-template>

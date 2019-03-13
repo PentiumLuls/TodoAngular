@@ -1,5 +1,5 @@
 <header>
-  <input [(ngModel)]="inputValue" type="text" id="task-input" placeholder="There would be your task...">
+  <input [(ngModel)]="inputValue" type="text" id="input-text" placeholder="There would be your task...">
   <span (click)="addNewTask()" id="task-add-button">Add</span>
 </header>
 
@@ -10,6 +10,7 @@
   <app-task *ngFor="let task of tasks.tasks; let i = index;"
             (click)="taskClicked(i)"
             (deleteTask)="deleteTaskTransfer($event)"
+            (changeTaskName)="changeTaskNameTransfer($event)"
             [index]="i"
             [task]="task"
             [currentListId]="currentListId">

@@ -15,27 +15,3 @@
 #tasks-current-list-container {
   flex: 1;
 }
-
-ul li.currentList {
-  background: #888;
-  color: #fff;
-}
-
-ul li.currentList::before {
-  content: '•';
-  position: absolute;
-  top: 10px;
-  left: 16px;
-}
-
-.task-edit-button {
-  position: absolute;
-  top: 0;
-  right: 40px;
-  padding: 12px 30px 12px 30px;
-}
-
-.task-edit-button:hover {
-  background: darkgray;
-  color: white;
-}
