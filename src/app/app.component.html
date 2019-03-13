@@ -3,7 +3,10 @@
     <div id="app-name">
       <h3>{{title}}</h3>
     </div>
-    <app-tasks-list></app-tasks-list>
+    <app-tasks-list
+      (addNewTaskToData)="addNewTask($event)"
+      [tasks]="tasksData">
+    </app-tasks-list>
   </div>
 
   <div id="task-lists-container">

@@ -58,31 +58,11 @@ export class AppComponent {
         name: 'uughhh... Some boring info',
         list: 'Personal',
         checked: false
-      },
-      {
-        name: 'task1',
-        checked: true,
-        list: 'newList',
-        id: 6
-      },
-      {
-        name: 'task2',
-        checked: true,
-        list: 'newList',
-        id: 7
-      },
-      {
-        name: 'task3 changed',
-        checked: false,
-        list: 'newList',
-        id: 8
-      },
-      {
-        name: 'task5',
-        checked: false,
-        list: 'newList',
-        id: 10
       }
     ]
   };
+
+  addNewTask(task: any) {
+    this.tasksData.tasks.push(task);
+  }
 }
