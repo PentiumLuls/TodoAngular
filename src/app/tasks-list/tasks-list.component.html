@@ -9,6 +9,8 @@
 >
   <app-task *ngFor="let task of tasks.tasks; let i = index;"
             (click)="taskClicked(i)"
+            (deleteTask)="deleteTaskTransfer($event)"
+            [index]="i"
             [task]="task">
   </app-task>
 </ul>

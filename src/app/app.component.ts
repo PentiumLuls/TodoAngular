@@ -66,8 +66,11 @@ export class AppComponent {
     this.tasksData.tasks.push(task);
   }
 
+  deleteTask(index) {
+    this.tasksData.tasks.splice(index, 1);
+  }
+
   toggleTaskChecked(index) {
-    console.log(this.tasksData.tasks);
     this.tasksData.tasks[index].checked = !this.tasksData.tasks[index].checked;
   }
 }

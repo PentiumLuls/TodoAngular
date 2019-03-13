@@ -11,6 +11,7 @@ export class TasksListComponent implements OnInit {
   @Input() tasks: any;
   @Output() addNewTaskToData: EventEmitter<any> = new EventEmitter();
   @Output() toggleTaskChecked = new EventEmitter();
+  @Output() deleteTask = new EventEmitter();
 
   constructor() {
   }
@@ -28,6 +29,10 @@ export class TasksListComponent implements OnInit {
 
   taskClicked(index) {
       this.toggleTaskChecked.emit(index);
+  }
+
+  deleteTaskTransfer(index) {
+    this.deleteTask.emit(index);
   }
 
   ngOnInit() {

@@ -29,3 +29,15 @@ li.checked::before {
   height: 15px;
   width: 7px;
 }
+
+.task-delete-button {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 12px 15px 12px 15px;
+}
+
+.task-delete-button:hover {
+  background: #f44336;
+  color: white;
+}
