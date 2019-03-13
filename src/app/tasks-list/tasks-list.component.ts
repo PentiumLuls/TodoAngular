@@ -49,6 +49,12 @@ export class TasksListComponent implements OnInit {
     this.changeTaskName.emit(obj);
   }
 
+  onInputKeydown(event) {
+    if (event.key === 'Enter') {
+      this.addNewTask();
+    }
+  }
+
   ngOnInit() {
   }
 

@@ -28,13 +28,14 @@
 
 <ng-template #editing>
   <li *ngIf="task.list === currentListId && isEditing === true else notInThisList">
-    <input [(ngModel)]="inputValue" type="text" id="input-text" placeholder="">
+    <input [(ngModel)]="inputValue" type="text" id="input-text" placeholder=""
+           (keydown)="onInputKeydown($event)">
     <span class="edit-save-button"
-    (click)="saveEditChanges()">
+          (click)="saveEditChanges()">
     SAVE
   </span>
     <span class="edit-cancel-button"
-    (click)="cancelEditChanges()">
+          (click)="cancelEditChanges()">
     CANCEL
   </span>
   </li>

@@ -22,8 +22,12 @@ export class ListsListComponent implements OnInit {
   }
 
   addNewListLocal() {
-    this.addNewList.emit(this.inputValue);
-    this.inputValue = '';
+    if (this.inputValue === '') {
+      alert('Please type new list name before adding it');
+    } else {
+      this.addNewList.emit(this.inputValue);
+      this.inputValue = '';
+    }
   }
 
   deleteListTransfer(index) {
@@ -32,5 +36,13 @@ export class ListsListComponent implements OnInit {
 
   changeCurrentList(index) {
     this.changeCurrentListTransfer.emit(index);
+  }
+
+  onInputKeydown(event) {
+    if (event.key === 'Enter') {
+      this.addNewListLocal();
+    } else if (event.key === 'Escape') {
+      this.inputValue = '';
+    }
   }
 }

@@ -38,4 +38,12 @@ export class TaskComponent implements OnInit {
     this.isEditing = false;
     this.changeTaskName.emit({name: this.inputValue, index: this.index});
   }
+
+  onInputKeydown(event) {
+    if (event.key === 'Enter') {
+      this.saveEditChanges();
+    } else if (event.key === 'Escape') {
+      this.cancelEditChanges();
+    }
+  }
 }

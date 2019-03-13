@@ -1,5 +1,6 @@
 <header>
-  <input [(ngModel)]="inputValue" type="text" id="input-text" placeholder="There would be your task...">
+  <input [(ngModel)]="inputValue" type="text" id="input-text" placeholder="There would be your task..."
+         (keydown)="onInputKeydown($event)">
   <span (click)="addNewTask()" id="task-add-button">Add</span>
 </header>
 
