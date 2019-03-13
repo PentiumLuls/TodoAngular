@@ -2,4 +2,12 @@
   <input [(ngModel)]="inputValue" type="text" id="new-list-input" placeholder="New list title">
   <span (click)="addNewListLocal()" id="lists-add-button">Add</span>
 </header>
-<ul id="task-lists"></ul>
+
+<ul *ngIf="tasks.lists.length > 0"
+    id="task-lists">
+  <app-list *ngFor="let list of tasks.lists; let i = index;"
+            [list]="list"
+            [index]="i"
+            [currentListId]="currentListId">
+  </app-list>
+</ul>

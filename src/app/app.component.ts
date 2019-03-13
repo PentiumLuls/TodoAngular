@@ -7,6 +7,7 @@ import {Component} from '@angular/core';
 })
 export class AppComponent {
   title = '~TODO app~';
+  currentListId = 0;
   tasksData = {
     lists: [
       {

@@ -1,4 +1,4 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-lists-list',
@@ -9,6 +9,8 @@ export class ListsListComponent implements OnInit {
 
   inputValue = '';
 
+  @Input() tasks: any;
+  @Input() currentListId: number;
   @Output() addNewList = new EventEmitter();
 
   constructor() {
