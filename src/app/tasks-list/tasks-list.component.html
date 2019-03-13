@@ -4,14 +4,15 @@
 </header>
 
 <ul
-  *ngIf="tasks.tasks.length > 0 else tasksAmount0"
+  *ngIf="isAnyTasksInCurrentList() === true else tasksAmount0"
   id="tasks"
 >
   <app-task *ngFor="let task of tasks.tasks; let i = index;"
             (click)="taskClicked(i)"
             (deleteTask)="deleteTaskTransfer($event)"
             [index]="i"
-            [task]="task">
+            [task]="task"
+            [currentListId]="currentListId">
   </app-task>
 </ul>
 

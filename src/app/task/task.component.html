@@ -1,4 +1,4 @@
-<li *ngIf="task.checked === true else taskNotChecked" [class.checked]="true">
+<li *ngIf="task.checked === true && task.list === currentListId else taskNotChecked" [class.checked]="true">
   {{task.name}}
   <span class="task-delete-button"
     (click)="deleteTaskClicked()">
@@ -7,11 +7,16 @@
 </li>
 
 <ng-template #taskNotChecked>
-  <li [class.checked]="false">
+  <li *ngIf="task.list === currentListId else notInThisList"
+    [class.checked]="false">
     {{task.name}}
     <span class="task-delete-button"
           (click)="deleteTaskClicked()">
     ×
   </span>
   </li>
+</ng-template>
+
+<ng-template #notInThisList>
+
 </ng-template>

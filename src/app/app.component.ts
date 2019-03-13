@@ -17,47 +17,43 @@ export class AppComponent {
       {
         id: 1,
         name: 'Personal'
-      },
-      {
-        name: 'newList',
-        id: 2
       }
     ],
     tasks: [
       {
         id: 0,
         name: 'You can add new task: type it and press \'Add\' button',
-        list: 'Tasks tutorial',
+        list: 0,
         checked: false
       },
       {
         id: 1,
         name: 'You should`nt be able to see this',
-        list: 'testList',
+        list: -1,
         checked: false
       },
       {
         id: 2,
         name: 'Click on task to complete it',
-        list: 'Tasks tutorial',
+        list: 0,
         checked: true
       },
       {
         id: 3,
         name: 'Delete task by pressing \'x\' button on it',
-        list: 'Tasks tutorial',
+        list: 0,
         checked: true
       },
       {
         id: 4,
         name: 'Edit task -> click on \'Edit\' button',
-        list: 'Tasks tutorial',
+        list: 0,
         checked: true
       },
       {
         id: 5,
         name: 'uughhh... Some boring info',
-        list: 'Personal',
+        list: 1,
         checked: false
       }
     ]
@@ -78,12 +74,39 @@ export class AppComponent {
 
   // LISTS
   addNewList(listName) {
-    const newList = {id: this.tasksData.lists.length, name: listName};
+    let newId = -1;
+    for (let list of this.tasksData.lists) {
+      if (list.id > newId) {
+        newId = list.id;
+      }
+    }
+    newId++;
+
+    const newList = {id: newId, name: listName};
     this.tasksData.lists.push(newList);
   }
 
-  deleteList(index) {
-    this.tasksData.lists.splice(index, 1);
-    console.log(this.tasksData.lists);
+  deleteList(id) {
+    let offset = -1;
+    for (let i = 0; i < this.tasksData.lists.length; i++) {
+      if (id === this.tasksData.lists[i].id) {
+        offset = i;
+        break;
+      }
+    }
+    this.tasksData.lists.splice(offset, 1);
+
+    const newTasks = [];
+    for (let i = 0; i < this.tasksData.tasks.length; i++) {
+      if (this.tasksData.tasks[i].list !== id) {
+        const newTask = this.tasksData.tasks[i];
+        newTasks.push(newTask);
+      }
+    }
+    this.tasksData.tasks = newTasks;
+  }
+
+  changeCurrentList(index) {
+    this.currentListId = index;
   }
 }

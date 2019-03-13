@@ -5,10 +5,11 @@
 
 <ul *ngIf="tasks.lists.length > 0"
     id="task-lists">
-  <app-list *ngFor="let list of tasks.lists; let i = index;"
+  <app-list *ngFor="let list of tasks.lists"
             [list]="list"
-            [index]="i"
+            [index]="list.id"
             [currentListId]="currentListId"
-            (deleteListTransfer)="deleteListTransfer($event)">
+            (deleteListTransfer)="deleteListTransfer($event)"
+            (click)="changeCurrentList(list.id)">
   </app-list>
 </ul>

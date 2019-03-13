@@ -13,6 +13,7 @@ export class ListsListComponent implements OnInit {
   @Input() currentListId: number;
   @Output() addNewList = new EventEmitter();
   @Output() deleteList = new EventEmitter();
+  @Output() changeCurrentListTransfer = new EventEmitter();
 
   constructor() {
   }
@@ -22,9 +23,14 @@ export class ListsListComponent implements OnInit {
 
   addNewListLocal() {
     this.addNewList.emit(this.inputValue);
+    this.inputValue = '';
   }
 
   deleteListTransfer(index) {
     this.deleteList.emit(index);
+  }
+
+  changeCurrentList(index) {
+    this.changeCurrentListTransfer.emit(index);
   }
 }

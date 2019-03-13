@@ -7,17 +7,19 @@
       (addNewTaskToData)="addNewTask($event)"
       (toggleTaskChecked)="toggleTaskChecked($event)"
       (deleteTask)="deleteTask($event)"
-      [tasks]="tasksData">
+      [tasks]="tasksData"
+      [currentListId]="currentListId">
     </app-tasks-list>
   </div>
 
   <div id="task-lists-container">
     <h3>Task lists</h3>
     <app-lists-list
-    (addNewList)="addNewList($event)"
-    (deleteList)="deleteList($event)"
-    [tasks]="tasksData"
-    [currentListId]="currentListId">
+      (addNewList)="addNewList($event)"
+      (deleteList)="deleteList($event)"
+      (changeCurrentListTransfer)="changeCurrentList($event)"
+      [tasks]="tasksData"
+      [currentListId]="currentListId">
     </app-lists-list>
   </div>
 </div>

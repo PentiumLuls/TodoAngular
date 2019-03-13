@@ -9,6 +9,7 @@ export class TasksListComponent implements OnInit {
   inputValue = '';
 
   @Input() tasks: any;
+  @Input() currentListId: any;
   @Output() addNewTaskToData: EventEmitter<any> = new EventEmitter();
   @Output() toggleTaskChecked = new EventEmitter();
   @Output() deleteTask = new EventEmitter();
@@ -20,8 +21,7 @@ export class TasksListComponent implements OnInit {
     if (this.inputValue === '') {
       alert('Please type your task before adding it');
     } else {
-      // TODO add list to task also
-      const task = {name: this.inputValue, checked: false};
+      const task = {name: this.inputValue, checked: false, list: this.currentListId};
       this.inputValue = '';
       this.addNewTaskToData.emit(task);
     }
@@ -33,6 +33,15 @@ export class TasksListComponent implements OnInit {
 
   deleteTaskTransfer(index) {
     this.deleteTask.emit(index);
+  }
+
+  isAnyTasksInCurrentList() {
+    for (const task of this.tasks.tasks) {
+      if (task.list === this.currentListId) {
+        return true;
+      }
+    }
+    return false;
   }
 
   ngOnInit() {
