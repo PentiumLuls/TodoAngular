@@ -80,6 +80,10 @@ export class AppComponent {
   addNewList(listName) {
     const newList = {id: this.tasksData.lists.length, name: listName};
     this.tasksData.lists.push(newList);
+  }
+
+  deleteList(index) {
+    this.tasksData.lists.splice(index, 1);
     console.log(this.tasksData.lists);
   }
 }

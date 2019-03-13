@@ -10,7 +10,7 @@
   <li [class.currentList]="false">
     {{list.name}}
     <span class="task-delete-button"
-          (click)="deleteListClicked()">
+          (click)="deleteListClicked($event)">
     ×
   </span>
   </li>

@@ -12,6 +12,7 @@ export class ListsListComponent implements OnInit {
   @Input() tasks: any;
   @Input() currentListId: number;
   @Output() addNewList = new EventEmitter();
+  @Output() deleteList = new EventEmitter();
 
   constructor() {
   }
@@ -23,4 +24,7 @@ export class ListsListComponent implements OnInit {
     this.addNewList.emit(this.inputValue);
   }
 
+  deleteListTransfer(index) {
+    this.deleteList.emit(index);
+  }
 }

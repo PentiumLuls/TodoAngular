@@ -15,6 +15,7 @@
     <h3>Task lists</h3>
     <app-lists-list
     (addNewList)="addNewList($event)"
+    (deleteList)="deleteList($event)"
     [tasks]="tasksData"
     [currentListId]="currentListId">
     </app-lists-list>

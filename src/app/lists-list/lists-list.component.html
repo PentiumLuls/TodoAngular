@@ -8,6 +8,7 @@
   <app-list *ngFor="let list of tasks.lists; let i = index;"
             [list]="list"
             [index]="i"
-            [currentListId]="currentListId">
+            [currentListId]="currentListId"
+            (deleteListTransfer)="deleteListTransfer($event)">
   </app-list>
 </ul>

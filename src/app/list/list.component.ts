@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
   selector: 'app-list',
@@ -10,12 +10,15 @@ export class ListComponent implements OnInit {
   @Input() list: any;
   @Input() index: number;
   @Input() currentListId: number;
-  constructor() { }
+  @Output() deleteListTransfer = new EventEmitter();
+
+  constructor() {
+  }
 
   ngOnInit() {
   }
 
   deleteListClicked() {
-    console.log(this.index);
+    this.deleteListTransfer.emit(this.index);
   }
 }
