@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {TasksServiceService} from '../tasks-service.service';
 
 @Component({
@@ -12,6 +12,7 @@ export class TaskComponent implements OnInit {
 
   @Input() task: any;
   @Input() index: number;
+  @Output() deleteTaskHandle = new EventEmitter();
 
   constructor(private tasksService: TasksServiceService) {
   }

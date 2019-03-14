@@ -1,7 +1,7 @@
 export class Task {
   id: number;
   name: string;
-  list: string;
+  list: number;
   checked: boolean;
 
   constructor(id, name, list, checked) {

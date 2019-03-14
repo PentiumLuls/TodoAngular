@@ -22,12 +22,12 @@ export class TasksListComponent implements OnInit {
   }
 
   isAnyTasksInCurrentList() {
-    /*for (const task of this.tasksService.tasks) {
+    for (const task of this.tasksService.tasks) {
       if (task.list === this.tasksService.currentListId) {
         return true;
       }
-    }*/
-    return true;
+    }
+    return false;
   }
 
   onInputKeydown(event) {

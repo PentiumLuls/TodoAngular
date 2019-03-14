@@ -2,6 +2,7 @@
   "name": "todo-angular",
   "version": "0.0.0",
   "scripts": {
+    "server": "json-server --watch tasksDB.json",
     "ng": "ng",
     "start": "ng serve",
     "build": "ng build",
