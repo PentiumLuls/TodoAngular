@@ -1,4 +1,7 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
+import {Task} from './Task';
+import {List} from './List';
 
 @Injectable({
   providedIn: 'root'
@@ -6,88 +9,56 @@ import { Injectable } from '@angular/core';
 export class TasksServiceService {
 
   currentListId = 0;
-  tasksData = {
-    lists: [
-      {
-        id: 0,
-        name: 'Tasks tutorial'
-      },
-      {
-        id: 1,
-        name: 'Personal'
-      }
-    ],
-    tasks: [
-      {
-        id: 0,
-        name: 'You can add new task: type it and press \'Add\' button',
-        list: 0,
-        checked: false
-      },
-      {
-        id: 1,
-        name: 'You should`nt be able to see this',
-        list: -1,
-        checked: false
-      },
-      {
-        id: 2,
-        name: 'Click on task to complete it',
-        list: 0,
-        checked: true
-      },
-      {
-        id: 3,
-        name: 'Delete task by pressing \'x\' button on it',
-        list: 0,
-        checked: false
-      },
-      {
-        id: 4,
-        name: 'Edit task -> click on \'Edit\' button',
-        list: 0,
-        checked: false
-      },
-      {
-        id: 5,
-        name: 'uughhh... Some boring info',
-        list: 1,
-        checked: false
-      }
-    ]
-  };
+  tasks: Task[];
+  lists: List[];
 
-  constructor() { }
+  constructor(private http: HttpClient) {
+    this.getTasksFromDB();
+    this.getListsFromDB();
+  }
+
+  //SERVER HANDLERS
+  getTasksFromDB() {
+    this.http.get('http://localhost:3000/tasks')
+      .subscribe((data: Task) => this.tasks = data)
+  }
+
+  getListsFromDB() {
+    this.http.get('http://localhost:3000/lists')
+      .subscribe((data: List) => this.lists = data)
+
+  }
+
 
   // TASKS
   addNewTask(name) {
     let newId = -1;
-    for (let task of this.tasksData.tasks) {
+    for (let task of this.tasks) {
       if (task.id > newId) {
         newId = task.id;
       }
     }
     newId++;
-    const task = {name: name, checked: false, list: this.currentListId, id: newId};
-    this.tasksData.tasks.push(task);
+    const task = new Task(newId, name, this.currentListId, false);
+    this.tasks.push(task);
   }
 
   deleteTask(index: number) {
-    this.tasksData.tasks.splice(index, 1);
+    this.tasks.splice(index, 1);
   }
 
   toggleTaskChecked(index) {
-    this.tasksData.tasks[index].checked = !this.tasksData.tasks[index].checked;
+    this.tasks[index].checked = !this.tasks[index].checked;
   }
 
   changeTaskName(name, index) {
-    this.tasksData.tasks[index].name = name;
+    this.tasks[index].name = name;
   }
 
   // LISTS
   addNewList(listName) {
     let newId = -1;
-    for (let list of this.tasksData.lists) {
+    for (let list of this.lists) {
       if (list.id > newId) {
         newId = list.id;
       }
@@ -95,27 +66,27 @@ export class TasksServiceService {
     newId++;
 
     const newList = {id: newId, name: listName};
-    this.tasksData.lists.push(newList);
+    this.lists.push(newList);
   }
 
   deleteList(id) {
     let offset = -1;
-    for (let i = 0; i < this.tasksData.lists.length; i++) {
-      if (id === this.tasksData.lists[i].id) {
+    for (let i = 0; i < this.lists.length; i++) {
+      if (id === this.lists[i].id) {
         offset = i;
         break;
       }
     }
-    this.tasksData.lists.splice(offset, 1);
+    this.lists.splice(offset, 1);
 
     const newTasks = [];
-    for (let i = 0; i < this.tasksData.tasks.length; i++) {
-      if (this.tasksData.tasks[i].list !== id) {
-        const newTask = this.tasksData.tasks[i];
+    for (let i = 0; i < this.tasks.length; i++) {
+      if (this.tasks[i].list !== id) {
+        const newTask = this.tasks[i];
         newTasks.push(newTask);
       }
     }
-    this.tasksData.tasks = newTasks;
+    this.tasks = newTasks;
   }
 
   changeCurrentList(index) {

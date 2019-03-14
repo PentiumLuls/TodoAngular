@@ -4,9 +4,9 @@
   <span (click)=" addNewList()" id="lists-add-button">Add</span>
 </header>
 
-<ul *ngIf="tasksService.tasksData.lists.length > 0"
+<ul *ngIf="tasksService.lists.length > 0"
     id="task-lists">
-  <app-list *ngFor="let list of tasksService.tasksData.lists"
+  <app-list *ngFor="let list of tasksService.lists"
             [list]="list"
             [index]="list.id"
             (click)="changeCurrentList(list.id)">
