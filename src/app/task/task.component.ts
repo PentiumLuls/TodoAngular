@@ -37,6 +37,10 @@ export class TaskComponent implements OnInit {
     this.tasksService.changeTaskName(this.inputValue, this.index);
   }
 
+  taskClicked() {
+    this.tasksService.toggleTaskChecked(this.index);
+  }
+
   onInputKeydown(event) {
     if (event.key === 'Enter') {
       this.saveEditChanges();

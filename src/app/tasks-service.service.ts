@@ -53,6 +53,10 @@ export class TasksServiceService {
     return this.http.post(this.ROOT_URL + '/' + target, newData);
   }
 
+  makePatchToDB(target, id, data) {
+    return this.http.patch(this.ROOT_URL + '/' + target + '/' + id, data);
+  }
+
   // TASKS
   addNewTask(name) {
     let newId = -1;
@@ -79,11 +83,18 @@ export class TasksServiceService {
   }
 
   toggleTaskChecked(index) {
-    this.tasks[index].checked = !this.tasks[index].checked;
+    const newTask = this.tasks[index];
+    newTask.checked = !newTask.checked;
+    this.makePatchToDB('tasks', this.tasks[index].id, newTask).subscribe((data: Task) => console.log(data));
+    //this.tasks = this.getTasksFromDB().subscribe(data => this.tasks = data);
   }
 
   changeTaskName(name, index) {
-    this.tasks[index].name = name;
+    const newTask = this.tasks[index];
+    newTask.name = name;
+    const offset = newTask.id;
+    this.makePatchToDB('tasks', offset, newTask).subscribe((data: Task) => console.log(data));
+    this.tasks = this.getTasksFromDB().subscribe(data => this.tasks = data);
   }
 
   // LISTS

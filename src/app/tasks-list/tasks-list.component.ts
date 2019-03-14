@@ -21,10 +21,6 @@ export class TasksListComponent implements OnInit {
     }
   }
 
-  taskClicked(index) {
-      this.tasksService.toggleTaskChecked(index);
-  }
-
   isAnyTasksInCurrentList() {
     /*for (const task of this.tasksService.tasks) {
       if (task.list === this.tasksService.currentListId) {

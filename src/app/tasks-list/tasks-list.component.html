@@ -9,7 +9,6 @@
   id="tasks"
 >
   <app-task *ngFor="let task of tasksService.tasks; let i = index;"
-            (click)="taskClicked(i)"
             [index]="i"
             [task]="task">
   </app-task>
