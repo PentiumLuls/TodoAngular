@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {TasksServiceService} from '../tasks-service.service';
 
 @Component({
   selector: 'app-tasks-list',
@@ -8,45 +9,29 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class TasksListComponent implements OnInit {
   inputValue = '';
 
-  @Input() tasks: any;
-  @Input() currentListId: any;
-  @Output() addNewTaskToData: EventEmitter<any> = new EventEmitter();
-  @Output() toggleTaskChecked = new EventEmitter();
-  @Output() deleteTask = new EventEmitter();
-  @Output() changeTaskName = new EventEmitter();
-
-  constructor() {
+  constructor(private tasksService: TasksServiceService) {
   }
 
   addNewTask() {
     if (this.inputValue === '') {
       alert('Please type your task before adding it');
     } else {
-      const task = {name: this.inputValue, checked: false, list: this.currentListId};
+      this.tasksService.addNewTask(this.inputValue);
       this.inputValue = '';
-      this.addNewTaskToData.emit(task);
     }
   }
 
   taskClicked(index) {
-      this.toggleTaskChecked.emit(index);
-  }
-
-  deleteTaskTransfer(index) {
-    this.deleteTask.emit(index);
+      this.tasksService.toggleTaskChecked(index);
   }
 
   isAnyTasksInCurrentList() {
-    for (const task of this.tasks.tasks) {
-      if (task.list === this.currentListId) {
+    for (const task of this.tasksService.tasksData.tasks) {
+      if (task.list === this.tasksService.currentListId) {
         return true;
       }
     }
     return false;
-  }
-
-  changeTaskNameTransfer(obj) {
-    this.changeTaskName.emit(obj);
   }
 
   onInputKeydown(event) {

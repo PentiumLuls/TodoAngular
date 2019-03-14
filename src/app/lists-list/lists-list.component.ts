@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {TasksServiceService} from '../tasks-service.service';
 
 @Component({
   selector: 'app-lists-list',
@@ -9,38 +10,28 @@ export class ListsListComponent implements OnInit {
 
   inputValue = '';
 
-  @Input() tasks: any;
-  @Input() currentListId: number;
-  @Output() addNewList = new EventEmitter();
-  @Output() deleteList = new EventEmitter();
-  @Output() changeCurrentListTransfer = new EventEmitter();
-
-  constructor() {
+  constructor(private tasksService: TasksServiceService) {
   }
 
   ngOnInit() {
   }
 
-  addNewListLocal() {
+  addNewList() {
     if (this.inputValue === '') {
       alert('Please type new list name before adding it');
     } else {
-      this.addNewList.emit(this.inputValue);
+      this.tasksService.addNewList(this.inputValue);
       this.inputValue = '';
     }
   }
 
-  deleteListTransfer(index) {
-    this.deleteList.emit(index);
-  }
-
   changeCurrentList(index) {
-    this.changeCurrentListTransfer.emit(index);
+    this.tasksService.changeCurrentList(index);
   }
 
   onInputKeydown(event) {
     if (event.key === 'Enter') {
-      this.addNewListLocal();
+      this.addNewList();
     } else if (event.key === 'Escape') {
       this.inputValue = '';
     }

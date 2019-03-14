@@ -1,4 +1,4 @@
-<li *ngIf="task.checked === true && isEditing === false && task.list === currentListId else taskNotChecked"
+<li *ngIf="task.checked === true && isEditing === false && task.list === tasksService.currentListId else taskNotChecked"
     [class.checked]="true">
   {{task.name}}
   <span class="task-edit-button"
@@ -12,7 +12,7 @@
 </li>
 
 <ng-template #taskNotChecked>
-  <li *ngIf="task.list === currentListId && isEditing === false else editing"
+  <li *ngIf="task.list === tasksService.currentListId && isEditing === false else editing"
       [class.checked]="false">
     {{task.name}}
     <span class="task-edit-button"
@@ -27,7 +27,7 @@
 </ng-template>
 
 <ng-template #editing>
-  <li *ngIf="task.list === currentListId && isEditing === true else notInThisList">
+  <li *ngIf="task.list === tasksService.currentListId && isEditing === true else notInThisList">
     <input [(ngModel)]="inputValue" type="text" id="input-text" placeholder=""
            (keydown)="onInputKeydown($event)">
     <span class="edit-save-button"

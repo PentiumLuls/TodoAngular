@@ -1,4 +1,5 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
+import {TasksServiceService} from '../tasks-service.service';
 
 @Component({
   selector: 'app-task',
@@ -11,18 +12,15 @@ export class TaskComponent implements OnInit {
 
   @Input() task: any;
   @Input() index: number;
-  @Input() currentListId: number;
-  @Output() deleteTask = new EventEmitter();
-  @Output() changeTaskName = new EventEmitter();
 
-  constructor() {
+  constructor(private tasksService: TasksServiceService) {
   }
 
   ngOnInit() {
   }
 
   deleteTaskClicked() {
-    this.deleteTask.emit(this.index);
+    this.tasksService.deleteTask(this.index);
   }
 
   editTaskClicked() {
@@ -36,7 +34,7 @@ export class TaskComponent implements OnInit {
 
   saveEditChanges() {
     this.isEditing = false;
-    this.changeTaskName.emit({name: this.inputValue, index: this.index});
+    this.tasksService.changeTaskName(this.inputValue, this.index);
   }
 
   onInputKeydown(event) {

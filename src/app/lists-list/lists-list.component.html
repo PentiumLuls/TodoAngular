@@ -1,16 +1,14 @@
 <header>
   <input [(ngModel)]="inputValue" type="text" id="input-text" placeholder="New list title"
          (keydown)="onInputKeydown($event)">
-  <span (click)=" addNewListLocal()" id="lists-add-button">Add</span>
+  <span (click)=" addNewList()" id="lists-add-button">Add</span>
 </header>
 
-<ul *ngIf="tasks.lists.length > 0"
+<ul *ngIf="tasksService.tasksData.lists.length > 0"
     id="task-lists">
-  <app-list *ngFor="let list of tasks.lists"
+  <app-list *ngFor="let list of tasksService.tasksData.lists"
             [list]="list"
             [index]="list.id"
-            [currentListId]="currentListId"
-            (deleteListTransfer)="deleteListTransfer($event)"
             (click)="changeCurrentList(list.id)">
   </app-list>
 </ul>

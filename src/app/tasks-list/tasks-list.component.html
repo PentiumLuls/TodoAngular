@@ -8,13 +8,10 @@
   *ngIf="isAnyTasksInCurrentList() === true else tasksAmount0"
   id="tasks"
 >
-  <app-task *ngFor="let task of tasks.tasks; let i = index;"
+  <app-task *ngFor="let task of tasksService.tasksData.tasks; let i = index;"
             (click)="taskClicked(i)"
-            (deleteTask)="deleteTaskTransfer($event)"
-            (changeTaskName)="changeTaskNameTransfer($event)"
             [index]="i"
-            [task]="task"
-            [currentListId]="currentListId">
+            [task]="task">
   </app-task>
 </ul>
 
