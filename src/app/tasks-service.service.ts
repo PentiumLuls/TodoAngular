@@ -16,6 +16,8 @@ export class TasksServiceService {
   tasks: Task[] = [];
   lists: List[] = [];
 
+  ROOT_URL = 'http://localhost:3000';
+
   constructor(private http: HttpClient) {
     this.tasks = this.getTasksFromDB().subscribe(data => this.tasks = data);
     this.lists = this.getListsFromDB().subscribe(data => this.lists = data);
@@ -23,7 +25,7 @@ export class TasksServiceService {
 
   //SERVER HANDLERS
   getTasksFromDB(): Observable<Task[]> {
-    return this.http.get('http://localhost:3000/tasks')
+    return this.http.get(this.ROOT_URL + '/tasks')
       .pipe(map(data => {
         let tasksList = data;
         return tasksList.map(function(task:any) {
@@ -35,7 +37,7 @@ export class TasksServiceService {
   }
 
   getListsFromDB() : Observable<List[]> {
-    return this.http.get('http://localhost:3000/lists').pipe(map(data=>{
+    return this.http.get(this.ROOT_URL + '/lists').pipe(map(data=>{
       let lists = data;
       return lists.map(function(list:any) {
         return new List(list.id, list.name);
@@ -43,11 +45,9 @@ export class TasksServiceService {
     }));
   }
 
-  /*getListsFromDB() {
-    this.http.get('http://localhost:3000/lists')
-      .subscribe((data: List) => this.lists = data);
-  }*/
-
+  postDataToDB(newData: any, target: string) {
+    return this.http.post(this.ROOT_URL + '/' + target, newData);
+  }
 
   // TASKS
   addNewTask(name) {
@@ -60,6 +60,9 @@ export class TasksServiceService {
     newId++;
     const task = new Task(newId, name, this.currentListId, false);
     this.tasks.push(task);
+
+    this.postDataToDB(task, 'tasks')
+      .subscribe((data: List) => {console.log(data)});
   }
 
   deleteTask(index: number) {
@@ -86,6 +89,9 @@ export class TasksServiceService {
 
     const newList = {id: newId, name: listName};
     this.lists.push(newList);
+
+    this.postDataToDB(newList, 'lists')
+      .subscribe((data: List) => {console.log(data)});
   }
 
   deleteList(id) {
