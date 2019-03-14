@@ -1,5 +1,9 @@
 import {Injectable} from '@angular/core';
+
 import {HttpClient} from '@angular/common/http';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
+
 import {Task} from './Task';
 import {List} from './List';
 
@@ -9,25 +13,40 @@ import {List} from './List';
 export class TasksServiceService {
 
   currentListId = 0;
-  tasks: Task[];
-  lists: List[];
+  tasks: Task[] = [];
+  lists: List[] = [];
 
   constructor(private http: HttpClient) {
-    this.getTasksFromDB();
-    this.getListsFromDB();
+    this.tasks = this.getTasksFromDB().subscribe(data => this.tasks = data);
+    this.lists = this.getListsFromDB().subscribe(data => this.lists = data);
   }
 
   //SERVER HANDLERS
-  getTasksFromDB() {
-    this.http.get('http://localhost:3000/tasks')
-      .subscribe((data: Task) => this.tasks = data)
+  getTasksFromDB(): Observable<Task[]> {
+    return this.http.get('http://localhost:3000/tasks')
+      .pipe(map(data => {
+        let tasksList = data;
+        return tasksList.map(function(task:any) {
+          return new Task(task.id, task.name, task.list, task.checked);
+        });
+      }));
+    //this.http.get('http://localhost:3000/tasks')
+    //.subscribe((data: Task) => this.tasks = data)
   }
 
-  getListsFromDB() {
+  getListsFromDB() : Observable<List[]> {
+    return this.http.get('http://localhost:3000/lists').pipe(map(data=>{
+      let lists = data;
+      return lists.map(function(list:any) {
+        return new List(list.id, list.name);
+      });
+    }));
+  }
+
+  /*getListsFromDB() {
     this.http.get('http://localhost:3000/lists')
-      .subscribe((data: List) => this.lists = data)
-
-  }
+      .subscribe((data: List) => this.lists = data);
+  }*/
 
 
   // TASKS
