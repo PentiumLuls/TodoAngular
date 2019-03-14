@@ -10,6 +10,6 @@ export class AppComponent {
   title = '~TODO app~';
 
 
-  constructor(private tasksService: TasksServiceService) {
+  constructor() {
   }
 }

@@ -13,14 +13,14 @@ import {List} from './List';
 export class TasksServiceService {
 
   currentListId = 0;
-  tasks: Task[] = [];
-  lists: List[] = [];
+  tasks: Task[];
+  lists: List[];
 
   ROOT_URL = 'http://localhost:3000';
 
   constructor(private http: HttpClient) {
-    this.tasks = this.getTasksFromDB().subscribe(data => this.tasks = data);
-    this.lists = this.getListsFromDB().subscribe(data => this.lists = data);
+    this.getTasksFromDB().subscribe(data => this.tasks = data);
+    this.getListsFromDB().subscribe(data => this.lists = data);
   }
 
   //SERVER HANDLERS
@@ -71,7 +71,7 @@ export class TasksServiceService {
     this.postDataToDB(task, 'tasks').subscribe((data: List) => {
       console.log(data);
     });
-    this.tasks = this.getTasksFromDB().subscribe(data => this.tasks = data);
+    this.getTasksFromDB().subscribe(data => this.tasks = data);
   }
 
   deleteTask(index: number) {
@@ -79,7 +79,7 @@ export class TasksServiceService {
     this.deleteDataFromDB('tasks', offset).subscribe((data: Task) => {
       console.log(data);
     });
-    this.tasks = this.getTasksFromDB().subscribe(data => this.tasks = data);
+    this.getTasksFromDB().subscribe(data => this.tasks = data);
   }
 
   toggleTaskChecked(index) {
@@ -94,9 +94,8 @@ export class TasksServiceService {
     newTask.name = name;
     const offset = newTask.id;
     this.makePatchToDB('tasks', offset, newTask).subscribe((data: Task) => console.log(data));
-    this.tasks = this.getTasksFromDB().subscribe(data => this.tasks = data);
+    this.getTasksFromDB().subscribe(data => this.tasks = data);
   }
-
   // LISTS
   addNewList(listName) {
     let newId = -1;
@@ -112,9 +111,9 @@ export class TasksServiceService {
     this.postDataToDB(newList, 'lists').subscribe((data: List) => {
       console.log(data);
     });
-    this.tasks = this.getTasksFromDB().subscribe(data => this.tasks = data);
-    this.lists = this.getListsFromDB().subscribe(data => this.lists = data);
-
+    this.changeCurrentList(newId);
+    this.getTasksFromDB().subscribe(data => this.tasks = data);
+    this.getListsFromDB().subscribe(data => this.lists = data);
   }
 
   deleteList(id) {
@@ -133,8 +132,8 @@ export class TasksServiceService {
         this.deleteDataFromDB('tasks', this.tasks[i].id).subscribe((data: Task) => {console.log(data)});
       }
     }
-    this.tasks = this.getTasksFromDB().subscribe(data => this.tasks = data);
-    this.lists = this.getListsFromDB().subscribe(data => this.lists = data);
+    this.getTasksFromDB().subscribe(data => this.tasks = data);
+    this.getListsFromDB().subscribe(data => this.lists = data);
   }
 
   changeCurrentList(index) {

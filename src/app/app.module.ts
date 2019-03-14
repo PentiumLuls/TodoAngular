@@ -1,6 +1,9 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 
+import {Router} from '@angular/router';
+import {RouterOutlet} from '@angular/router';
+
 import {FormsModule} from '@angular/forms';
 
 import {HttpClient, HttpClientModule} from '@angular/common/http';
@@ -32,4 +35,6 @@ import {List} from './List';
   bootstrap: [AppComponent]
 })
 export class AppModule {
+  constructor(router: Router) {
+  }
 }
