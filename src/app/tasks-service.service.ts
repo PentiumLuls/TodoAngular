@@ -6,6 +6,7 @@ import {map} from 'rxjs/operators';
 
 import {Task} from './Task';
 import {List} from './List';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -18,8 +19,8 @@ export class TasksServiceService {
 
   ROOT_URL = 'http://localhost:3000';
 
-  constructor(private http: HttpClient) {
-    this.getTasksFromDB().subscribe(data => {this.tasks = data; console.log(data); });
+  constructor(private http: HttpClient, private router: Router) {
+    this.getTasksFromDB().subscribe(data => this.tasks = data);
     this.getListsFromDB().subscribe(data => this.lists = data);
   }
 
@@ -50,6 +51,11 @@ export class TasksServiceService {
   }
 
   // TASKS
+  getTasksInList(id) {
+    console.log(this.tasks.filter(task => task.list === id));
+    return this.tasks.filter(task => task.list === id);
+  }
+
   addNewTask(name) {
     let newId = -1;
     for (const task of this.tasks) {
@@ -124,9 +130,16 @@ export class TasksServiceService {
     this.deleteDataFromDB('lists', offset).subscribe((data: List) => {console.log(data); }, (error) => {console.log(error)},
       () => this.getTasksFromDB().subscribe(data => {this.tasks = data; }, (error) => {console.log(error); },
         () => {this.getListsFromDB().subscribe(data => this.lists = data); }));
+    this.changeCurrentList(offset - 1);
   }
 
   changeCurrentList(index) {
     this.currentListId = index;
+  }
+
+  navigateToList(listIndex: number) {
+    const id = this.lists[listIndex].id;
+    this.router.navigateByUrl('/lists/' + id);
+    this.changeCurrentList(id);
   }
 }
