@@ -5,6 +5,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {CurrentListComponent} from './current-list/current-list.component';
 
 const routes: Routes = [
+  { path: '', redirectTo: 'lists', pathMatch: 'full' },
   {path: 'lists', component: ListsPreviewComponent},
   {path: 'lists/:id', component:CurrentListComponent},
   {path: '**', component: PageNotFoundComponent},
