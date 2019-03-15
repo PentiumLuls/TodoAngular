@@ -7,6 +7,10 @@
     {
       "id": 1,
       "name": "Personal"
+    },
+    {
+      "id": 2,
+      "name": "test"
     }
   ],
   "tasks": [
@@ -45,6 +49,12 @@
       "name": "uughhh... Some boring info",
       "list": 1,
       "checked": true
+    },
+    {
+      "checked": false,
+      "id": 6,
+      "name": "test",
+      "list": 2
     }
   ]
 }

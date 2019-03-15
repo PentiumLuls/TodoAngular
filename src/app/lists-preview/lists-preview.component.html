@@ -1,0 +1,25 @@
+<div id="app-container">
+  <div id="app-name">
+    <h3>~~TODO app~~</h3>
+  </div>
+
+  <div id="lists-preview-container">
+
+    <div *ngFor="let list of tasksService.lists; let i = index">
+      <div id="card" (click)="cardClicked(i)">
+        <div id="card-header">
+          <h1 id="list-name">{{list.name}}</h1>
+          <hr>
+        </div>
+        <ul>
+          <li *ngFor="let task of tasksService.getTasksInList(list.id)">
+            {{task.name}}
+          </li>
+        </ul>
+        <span id="more">...</span>
+      </div>
+    </div>
+
+  </div>
+
+</div>
