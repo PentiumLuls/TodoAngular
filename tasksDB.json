@@ -2,15 +2,18 @@
   "lists": [
     {
       "id": 0,
-      "name": "Tasks tutorial"
+      "name": "Tasks tutorial",
+      "pinned": true
     },
     {
       "id": 1,
-      "name": "Personal"
+      "name": "Personal",
+      "pinned": false
     },
     {
       "id": 2,
-      "name": "Work"
+      "name": "Work",
+      "pinned": false
     }
   ],
   "tasks": [
@@ -63,7 +66,7 @@
       "list": 2
     },
     {
-      "checked": false,
+      "checked": true,
       "id": 36,
       "name": "Make redirect to lists/",
       "list": 2

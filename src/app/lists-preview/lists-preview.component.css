@@ -45,3 +45,19 @@ ul li {
   margin: 47%;
   font-size: 30px;
 }
+
+.pin__a {
+  position: relative;
+}
+
+.pin {
+  position: absolute;
+  top: 5px;
+  left: 15px;
+  font-size: 20px;
+  opacity: 0;
+}
+
+.pin[data-pin=true] {
+  opacity: 1;
+}

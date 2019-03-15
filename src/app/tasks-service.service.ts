@@ -15,7 +15,7 @@ export class TasksServiceService {
 
   currentListId = 0;
   tasks: Task[] = [new Task(0, 'name', -1, false)];
-  lists: List[] = [new List(0, '')];
+  lists: List[] = [new List(0, 'name', false)];
 
   ROOT_URL = 'http://localhost:3000';
 
@@ -34,7 +34,7 @@ export class TasksServiceService {
 
   getListsFromDB(): Observable<List[]> {
     return this.http.get(this.ROOT_URL + '/lists').pipe(map(data => {
-      return data.map((list: any) => new List(list.id, list.name));
+      return data.map((list: any) => new List(list.id, list.name, list.pinned));
     }));
   }
 
@@ -140,6 +140,15 @@ export class TasksServiceService {
     this.router.navigateByUrl('/lists/' + this.lists[i].name);
   }
 
+  pinList(id) {
+    const i = this.lists.findIndex(list => list.id === id);
+    const newList = this.lists[i];
+    newList.pinned = !newList.pinned;
+    this.makePatchToDB('lists', id, newList).subscribe((data: Task) => console.log(data),
+      (error) => {console.log(error); },
+      () => {this.getListsFromDB().subscribe(data => this.lists = data); });
+  }
+
   navigateToList(listIndex: number) {
     const id = this.lists[listIndex].id;
     this.router.navigateByUrl('/lists/' + this.lists[listIndex].name);
@@ -148,6 +157,10 @@ export class TasksServiceService {
 
   navigateToPreview() {
     this.router.navigateByUrl('/lists');
+  }
+
+  getListSortedByPin() {
+    return this.lists.sort(function(x, y) {return (x.pinned === y.pinned)? 0 : x? -1 : 1;});
   }
 
   changeCurrentListIdByName(name) {
