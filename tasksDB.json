@@ -10,7 +10,7 @@
     },
     {
       "id": 2,
-      "name": "test"
+      "name": "Work"
     }
   ],
   "tasks": [
@@ -51,9 +51,111 @@
       "checked": true
     },
     {
-      "checked": false,
+      "checked": true,
       "id": 6,
+      "name": "Add more style to app",
+      "list": 2
+    },
+    {
+      "checked": false,
+      "id": 7,
+      "name": "Make pinned lists",
+      "list": 2
+    },
+    {
+      "checked": false,
+      "id": 14,
+      "name": "ftr4",
+      "list": 4
+    },
+    {
+      "checked": false,
+      "id": 15,
+      "name": "t4t",
+      "list": 4
+    },
+    {
+      "checked": false,
+      "id": 16,
+      "name": "tg",
+      "list": 4
+    },
+    {
+      "checked": false,
+      "id": 17,
+      "name": "rg",
+      "list": 4
+    },
+    {
+      "checked": false,
+      "id": 18,
+      "name": "g",
+      "list": 4
+    },
+    {
+      "checked": false,
+      "id": 19,
+      "name": "reg",
+      "list": 4
+    },
+    {
+      "checked": false,
+      "id": 20,
+      "name": "reg",
+      "list": 4
+    },
+    {
+      "checked": true,
+      "id": 25,
+      "name": "er",
+      "list": 5
+    },
+    {
+      "checked": true,
+      "id": 26,
+      "name": "e",
+      "list": 5
+    },
+    {
+      "checked": true,
+      "id": 27,
+      "name": "tr",
+      "list": 5
+    },
+    {
+      "checked": true,
+      "id": 28,
+      "name": "ret",
+      "list": 5
+    },
+    {
+      "checked": true,
+      "id": 29,
+      "name": "rt",
+      "list": 5
+    },
+    {
+      "checked": true,
+      "id": 30,
+      "name": "Fix delete list",
+      "list": 2
+    },
+    {
+      "checked": false,
+      "id": 33,
       "name": "test",
+      "list": 7
+    },
+    {
+      "checked": false,
+      "id": 35,
+      "name": "teswt4",
+      "list": 6
+    },
+    {
+      "checked": false,
+      "id": 36,
+      "name": "Make redirect to lists/",
       "list": 2
     }
   ]

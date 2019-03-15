@@ -12,7 +12,7 @@
           <hr>
         </div>
         <ul>
-          <li *ngFor="let task of tasksService.getTasksInList(list.id)">
+          <li *ngFor="let task of tasksService.getTasksInList(list.id, 5, false)">
             {{task.name}}
           </li>
         </ul>

@@ -16,3 +16,20 @@
   padding-left: 5%;
 }
 
+#preview {
+  position: absolute;
+  margin-top: 20px;
+}
+
+#to-preview {
+  background-color: transparent;
+  border: 1px solid #2196F3;
+  padding: .5rem 1rem;
+  cursor: pointer;
+  border-radius: .25rem;
+}
+
+#to-preview:hover {
+  background: lightblue;
+}
+

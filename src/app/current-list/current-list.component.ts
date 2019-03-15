@@ -13,8 +13,11 @@ export class CurrentListComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.tasksService.currentListId = +params['id'];
+      this.tasksService.changeCurrentListIdByName(params['id']);
     });
   }
 
+  previewClicked() {
+    this.tasksService.navigateToPreview();
+  }
 }

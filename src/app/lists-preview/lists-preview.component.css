@@ -32,6 +32,7 @@ ul li {
   border: 1px solid #d3d3d3;
   border-radius: .25rem;
   background: lightyellow;
+  font: icon;
   cursor: pointer;
 }
 

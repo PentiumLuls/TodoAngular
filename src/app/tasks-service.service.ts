@@ -51,9 +51,10 @@ export class TasksServiceService {
   }
 
   // TASKS
-  getTasksInList(id) {
-    console.log(this.tasks.filter(task => task.list === id));
-    return this.tasks.filter(task => task.list === id);
+  getTasksInList(id, amount: number, checked: boolean) {
+    return this.tasks.filter(task => task.list === id)
+      .filter(task => task.checked === checked)
+      .slice(0, amount);
   }
 
   addNewTask(name) {
@@ -127,19 +128,34 @@ export class TasksServiceService {
         this.deleteDataFromDB('tasks', this.tasks[i].id).subscribe((data: Task) => {console.log(data); });
       }
     }
-    this.deleteDataFromDB('lists', offset).subscribe((data: List) => {console.log(data); }, (error) => {console.log(error)},
+    this.deleteDataFromDB('lists', id).subscribe((data: List) => {console.log(data); }, (error) => {console.log(error)},
       () => this.getTasksFromDB().subscribe(data => {this.tasks = data; }, (error) => {console.log(error); },
         () => {this.getListsFromDB().subscribe(data => this.lists = data); }));
-    this.changeCurrentList(offset - 1);
+    this.changeCurrentList(id - 1);
   }
 
   changeCurrentList(index) {
     this.currentListId = index;
+    const i = this.lists.findIndex(list => list.id === index);
+    this.router.navigateByUrl('/lists/' + this.lists[i].name);
   }
 
   navigateToList(listIndex: number) {
     const id = this.lists[listIndex].id;
-    this.router.navigateByUrl('/lists/' + id);
+    this.router.navigateByUrl('/lists/' + this.lists[listIndex].name);
     this.changeCurrentList(id);
+  }
+
+  navigateToPreview() {
+    this.router.navigateByUrl('/lists');
+  }
+
+  changeCurrentListIdByName(name) {
+    for (let list of this.lists) {
+      if (list.name === name) {
+        this.changeCurrentList(list.id);
+        break;
+      }
+    }
   }
 }
