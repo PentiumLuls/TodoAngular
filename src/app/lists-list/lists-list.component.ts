@@ -19,6 +19,8 @@ export class ListsListComponent implements OnInit {
   addNewList() {
     if (this.inputValue === '') {
       alert('Please type new list name before adding it');
+    } else if (this.inputValue.length > 27) {
+      alert('Ops! This name is very long - max: 27 symbols');
     } else {
       this.tasksService.addNewList(this.inputValue);
       this.inputValue = '';

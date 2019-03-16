@@ -15,6 +15,8 @@ export class TasksListComponent implements OnInit {
   addNewTask() {
     if (this.inputValue === '') {
       alert('Please type your task before adding it');
+    } else if (this.inputValue.length >= 70) {
+      alert('Ops! This name is very long - max: 70 symbols');
     } else {
       this.tasksService.addNewTask(this.inputValue);
       this.inputValue = '';
