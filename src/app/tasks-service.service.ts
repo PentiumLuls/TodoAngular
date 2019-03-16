@@ -68,10 +68,8 @@ export class TasksServiceService {
     newId++;
     const task = new Task(newId, name, this.currentListId, false);
 
-    this.postDataToDB(task, 'tasks').subscribe((data: List) => {
-      console.log(data);
-    });
-    this.getTasksFromDB().subscribe(data => this.tasks = data);
+    this.postDataToDB(task, 'tasks').subscribe((data: List) => console.log(data), (e) => {},
+      () => {this.getTasksFromDB().subscribe(data => this.tasks = data); });
   }
 
   deleteTask(index: number) {
