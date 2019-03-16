@@ -21,7 +21,8 @@ export class TasksServiceService {
 
   constructor(private http: HttpClient, private router: Router) {
     this.getTasksFromDB().subscribe(data => this.tasks = data);
-    this.getListsFromDB().subscribe(data => this.lists = data);
+    this.getListsFromDB().subscribe(data => this.lists = data, (e) => {},
+      () => this.changeCurrentListIdByName(this.router.url.split('/')[2]));
   }
 
   // SERVER HANDLERS
@@ -134,9 +135,9 @@ export class TasksServiceService {
     this.changeCurrentList(id - 1);
   }
 
-  changeCurrentList(index) {
-    this.currentListId = index;
-    const i = this.lists.findIndex(list => list.id === index);
+  changeCurrentList(id) {
+    this.currentListId = id;
+    const i = this.lists.findIndex(list => list.id === id);
     this.router.navigateByUrl('/lists/' + this.lists[i].name);
   }
 
