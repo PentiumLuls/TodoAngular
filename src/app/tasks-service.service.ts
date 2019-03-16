@@ -113,14 +113,7 @@ export class TasksServiceService {
   }
 
   deleteList(id) {
-    let offset = -1;
-    for (let i = 0; i < this.lists.length; i++) {
-      if (id === this.lists[i].id) {
-        offset = i;
-        break;
-      }
-    }
-    this.lists.splice(offset, 1);
+    this.lists.splice(this.getIndexById(this.lists, id), 1);
 
     for (let i = 0; i < this.tasks.length; i++) {
       if (this.tasks[i].list === id) {
@@ -135,12 +128,12 @@ export class TasksServiceService {
 
   changeCurrentList(id) {
     this.currentListId = id;
-    const i = this.lists.findIndex(list => list.id === id);
+    const i = this.getIndexById(this.lists, id);
     this.router.navigateByUrl('/lists/' + this.lists[i].name);
   }
 
   pinList(id) {
-    const i = this.lists.findIndex(list => list.id === id);
+    const i = this.getIndexById(this.lists, id);
     const newList = this.lists[i];
     newList.pinned = !newList.pinned;
     this.makePatchToDB('lists', id, newList).subscribe((data: Task) => console.log(data),
@@ -169,5 +162,9 @@ export class TasksServiceService {
         break;
       }
     }
+  }
+
+  private getIndexById(target, id: number) {
+    return target.findIndex(list => list.id === id);
   }
 }
