@@ -10,7 +10,10 @@
 >
   <app-task *ngFor="let task of tasksService.tasks; let i = index;"
             [index]="i"
-            [task]="task">
+            [task]="task"
+            (taskClicked)="handleTaskClicked($event)"
+            (changeTaskName)="handleChangeTaskName($event)"
+            (deleteTask)="handleDeleteTask($event)">
   </app-task>
 </ul>
 

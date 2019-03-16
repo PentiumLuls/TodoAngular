@@ -47,4 +47,15 @@ export class TasksListComponent implements OnInit {
   ngOnInit() {
   }
 
+  handleTaskClicked(index) {
+    this.tasksService.toggleTaskChecked(index);
+  }
+
+  handleDeleteTask(index) {
+    this.tasksService.deleteTask(index);
+  }
+
+  handleChangeTaskName(obj) {
+    this.tasksService.changeTaskName(obj.name, obj.index);
+  }
 }

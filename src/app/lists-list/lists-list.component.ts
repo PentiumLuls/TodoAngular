@@ -40,4 +40,8 @@ export class ListsListComponent implements OnInit {
       this.inputChild.inputValue = '';
     }
   }
+
+  deleteList(index) {
+    this.tasksService.deleteList(index);
+  }
 }
