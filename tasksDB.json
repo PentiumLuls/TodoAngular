@@ -19,7 +19,7 @@
   "tasks": [
     {
       "id": 0,
-      "name": "You can add new task: type it and press 'Add' button",
+      "name": "✅You can add new task: type it and press 'Add' button✔✔",
       "list": 0,
       "checked": false
     },
@@ -37,7 +37,7 @@
     },
     {
       "id": 3,
-      "name": "Delete task by pressing 'x' button on it",
+      "name": "Delete task by pressing 'x' button on it❌❌",
       "list": 0,
       "checked": false
     },
@@ -67,25 +67,25 @@
     },
     {
       "checked": true,
-      "id": 36,
+      "id": 8,
       "name": "Make redirect to lists/",
       "list": 2
     },
     {
       "checked": false,
-      "id": 37,
+      "id": 9,
       "name": "Get a nap... a good one))",
       "list": 1
     },
     {
       "checked": false,
-      "id": 38,
-      "name": "You can pin list by pressing on it name on lists preview",
+      "id": 10,
+      "name": "You can pin📌 list by pressing on it name on lists preview",
       "list": 0
     },
     {
       "checked": false,
-      "id": 39,
+      "id": 11,
       "name": "In preview mode displayed only 5 tasks, so you wouldn`t see this",
       "list": 0
     }
