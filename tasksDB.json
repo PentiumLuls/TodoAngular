@@ -33,7 +33,7 @@
       "id": 2,
       "name": "Click on task to complete it",
       "list": 0,
-      "checked": true
+      "checked": false
     },
     {
       "id": 3,
@@ -60,7 +60,7 @@
       "list": 2
     },
     {
-      "checked": false,
+      "checked": true,
       "id": 7,
       "name": "Make pinned lists",
       "list": 2
@@ -70,6 +70,24 @@
       "id": 36,
       "name": "Make redirect to lists/",
       "list": 2
+    },
+    {
+      "checked": false,
+      "id": 37,
+      "name": "Get a nap... a good one))",
+      "list": 1
+    },
+    {
+      "checked": false,
+      "id": 38,
+      "name": "You can pin list by pressing on it name on lists preview",
+      "list": 0
+    },
+    {
+      "checked": false,
+      "id": 39,
+      "name": "In preview mode displayed only 5 tasks, so you wouldn`t see this",
+      "list": 0
     }
   ]
 }
