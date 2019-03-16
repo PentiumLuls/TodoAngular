@@ -1,8 +1,8 @@
-<header>
-  <input [(ngModel)]="inputValue" type="text" id="input-text" placeholder="There would be your task..."
-         (keydown)="onInputKeydown($event)">
-  <span (click)="addNewTask()" id="task-add-button">Add</span>
-</header>
+<app-new-item-adding-input
+  [placeholder]="placeholder"
+  (onInputKeydown)="onInputKeydown($event)"
+  (spanClick)="addNewTask()">
+</app-new-item-adding-input>
 
 <ul
   *ngIf="isAnyTasksInCurrentList() === true else tasksAmount0"

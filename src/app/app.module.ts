@@ -17,6 +17,7 @@ import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
 import {ListsPreviewComponent} from './lists-preview/lists-preview.component';
 import {AppRoutingModule} from './app-routing.module';
 import {CurrentListComponent} from './current-list/current-list.component';
+import { NewItemAddingInputComponent } from './new-item-adding-input/new-item-adding-input.component';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,8 @@ import {CurrentListComponent} from './current-list/current-list.component';
     ListComponent,
     PageNotFoundComponent,
     ListsPreviewComponent,
-    CurrentListComponent
+    CurrentListComponent,
+    NewItemAddingInputComponent
   ],
   imports: [
     BrowserModule,

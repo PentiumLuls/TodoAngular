@@ -14,6 +14,14 @@
       "id": 2,
       "name": "Work",
       "pinned": false
+    },
+    {
+      "id": 3,
+      "name": "test"
+    },
+    {
+      "id": 4,
+      "name": "test1"
     }
   ],
   "tasks": [
@@ -88,6 +96,18 @@
       "id": 39,
       "name": "In preview mode displayed only 5 tasks, so you wouldn`t see this",
       "list": 0
+    },
+    {
+      "checked": false,
+      "id": 40,
+      "name": "test1",
+      "list": 4
+    },
+    {
+      "checked": false,
+      "id": 41,
+      "name": "test123",
+      "list": 4
     }
   ]
 }

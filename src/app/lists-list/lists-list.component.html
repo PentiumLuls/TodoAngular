@@ -1,8 +1,8 @@
-<header>
-  <input [(ngModel)]="inputValue" type="text" id="input-text" placeholder="New list title"
-         (keydown)="onInputKeydown($event)">
-  <span (click)=" addNewList()" id="lists-add-button">Add</span>
-</header>
+<app-new-item-adding-input
+  [placeholder]="placeholder"
+  (onInputKeydown)="onInputKeydown($event)"
+  (spanClick)="addNewList()">
+</app-new-item-adding-input>
 
 <ul *ngIf="tasksService.lists.length > 0"
     id="task-lists">

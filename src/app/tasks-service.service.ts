@@ -110,8 +110,8 @@ export class TasksServiceService {
 
     this.postDataToDB(newList, 'lists').subscribe((data: List) => {console.log(data); }, (error) => {console.log(error); },
       () => this.getTasksFromDB().subscribe(data => {this.tasks = data; }, (error) => {console.log(error); },
-        () => {this.getListsFromDB().subscribe(data => this.lists = data); }));
-    this.changeCurrentList(newId);
+        () => {this.getListsFromDB().subscribe(data => this.lists = data, (e) => {},
+          () => {this.changeCurrentList(newId); }); }));
   }
 
   deleteList(id) {
