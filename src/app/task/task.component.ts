@@ -24,7 +24,7 @@ export class TaskComponent implements OnInit {
   }
 
   deleteTaskClicked() {
-    this.deleteTask.emit(this.index);
+    this.deleteTask.emit(this.task);
   }
 
   editTaskClicked() {
@@ -38,11 +38,11 @@ export class TaskComponent implements OnInit {
 
   saveEditChanges() {
     this.isEditing = false;
-    this.changeTaskName.emit({name: this.inputValue, index: this.index});
+    this.changeTaskName.emit({name: this.inputValue, task: this.task});
   }
 
   taskClickedHandle() {
-    this.taskClicked.emit(this.index);
+    this.taskClicked.emit(this.task);
   }
 
   onInputKeydown(event) {

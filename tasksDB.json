@@ -84,13 +84,13 @@
       "list": 2
     },
     {
-      "checked": false,
+      "checked": true,
       "id": 14,
       "name": "Pass object instead index/id",
       "list": 2
     },
     {
-      "checked": false,
+      "checked": true,
       "id": 15,
       "name": "Card component in preview",
       "list": 2

@@ -19,6 +19,6 @@ export class ListComponent implements OnInit {
   }
 
   deleteListClicked() {
-    this.deleteList.emit(this.list.id);
+    this.deleteList.emit(this.list);
   }
 }

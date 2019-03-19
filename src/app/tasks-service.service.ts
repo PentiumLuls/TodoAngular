@@ -72,25 +72,21 @@ export class TasksServiceService {
       () => {this.getTasksFromDB().subscribe(data => this.tasks = data); });
   }
 
-  deleteTask(index: number) {
-    const offset = this.tasks[index].id;
-    this.deleteDataFromDB('tasks', offset).subscribe((data: Task) => {console.log(data); }, (e) => {console.log(e); },
+  deleteTask(task) {
+    this.deleteDataFromDB('tasks', task.id).subscribe((data: Task) => {console.log(data); }, (e) => {console.log(e); },
       () => {this.getTasksFromDB().subscribe(data => this.tasks = data); });
   }
 
-  toggleTaskChecked(index) {
-    const newTask = this.tasks[index];
-    newTask.checked = !newTask.checked;
-    this.makePatchToDB('tasks', this.tasks[index].id, newTask).subscribe((data: Task) => console.log(data),
+  toggleTaskChecked(task) {
+    task.checked = !task.checked;
+    this.makePatchToDB('tasks', task.id, task).subscribe((data: Task) => console.log(data),
       (error) => {console.log(error); },
       () => {this.getTasksFromDB().subscribe(data => this.tasks = data); });
   }
 
-  changeTaskName(name, index) {
-    const newTask = this.tasks[index];
-    newTask.name = name;
-    const offset = newTask.id;
-    this.makePatchToDB('tasks', offset, newTask).subscribe((data: Task) => console.log(data),
+  changeTaskName(name, task) {
+    task.name = name;
+    this.makePatchToDB('tasks', task.id, task).subscribe((data: Task) => console.log(data),
       (error) => {console.log(error); },
       () => {this.getTasksFromDB().subscribe(data => this.tasks = data); });
   }
@@ -104,46 +100,42 @@ export class TasksServiceService {
     }
     newId++;
 
-    const newList = {id: newId, name: listName};
+    const newList = new List(newId, listName, false);
 
     this.postDataToDB(newList, 'lists').subscribe((data: List) => {console.log(data); }, (error) => {console.log(error); },
       () => this.getTasksFromDB().subscribe(data => {this.tasks = data; }, (error) => {console.log(error); },
         () => {this.getListsFromDB().subscribe(data => this.lists = data, (e) => {},
-          () => {this.changeCurrentList(newId); }); }));
+          () => {this.changeCurrentList(newList); }); }));
   }
 
-  deleteList(id) {
+  deleteList(list) {
 
     for (let i = 0; i < this.tasks.length; i++) {
-      if (this.tasks[i].list === id) {
+      if (this.tasks[i].list === list.id) {
         this.deleteDataFromDB('tasks', this.tasks[i].id).subscribe((data: Task) => {console.log(data); });
       }
     }
-    this.deleteDataFromDB('lists', id).subscribe((data: List) => {console.log(data); }, (error) => {console.log(error)},
+    this.deleteDataFromDB('lists', list.id).subscribe((data: List) => {console.log(data); }, (error) => {console.log(error)},
       () => this.getTasksFromDB().subscribe(data => {this.tasks = data; }, (error) => {console.log(error); },
         () => {this.getListsFromDB().subscribe(data => this.lists = data); }));
-    this.changeCurrentList(id - 1);
+    this.changeCurrentList(list);
   }
 
-  changeCurrentList(id) {
-    this.currentListId = id;
-    const i = this.getIndexById(this.lists, id);
-    this.router.navigateByUrl('/lists/' + this.lists[i].name);
+  changeCurrentList(list: List) {
+    this.router.navigateByUrl('/lists/' + list.name);
+    this.currentListId = list.id;
   }
 
-  pinList(id) {
-    const i = this.getIndexById(this.lists, id);
-    const newList = this.lists[i];
-    newList.pinned = !newList.pinned;
-    this.makePatchToDB('lists', id, newList).subscribe((data: Task) => console.log(data),
+  pinList(list: List) {
+    list.pinned = !list.pinned;
+    this.makePatchToDB('lists', list.id, list).subscribe((data: Task) => console.log(data),
       (error) => {console.log(error); },
       () => {this.getListsFromDB().subscribe(data => this.lists = data); });
   }
 
-  navigateToList(listIndex: number) {
-    const id = this.lists[listIndex].id;
-    this.router.navigateByUrl('/lists/' + this.lists[listIndex].name);
-    this.changeCurrentList(id);
+  navigateToList(list: List) {
+    this.router.navigateByUrl('/lists/' + list.name);
+    this.changeCurrentList(list);
   }
 
   navigateToPreview() {
@@ -156,7 +148,7 @@ export class TasksServiceService {
   changeCurrentListIdByName(name) {
     for (let list of this.lists) {
       if (list.name === name) {
-        this.changeCurrentList(list.id);
+        this.changeCurrentList(list);
         break;
       }
     }
@@ -172,5 +164,13 @@ export class TasksServiceService {
 
   private getIndexById(target, id: number) {
     return target.findIndex(list => list.id === id);
+  }
+
+  getListById(id: number) {
+    for (let list of this.lists) {
+      if (list.id === id) {
+        return list;
+      }
+    }
   }
 }
