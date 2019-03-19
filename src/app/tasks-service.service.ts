@@ -113,7 +113,6 @@ export class TasksServiceService {
   }
 
   deleteList(id) {
-    this.lists.splice(this.getIndexById(this.lists, id), 1);
 
     for (let i = 0; i < this.tasks.length; i++) {
       if (this.tasks[i].list === id) {
@@ -150,7 +149,6 @@ export class TasksServiceService {
   navigateToPreview() {
     this.router.navigateByUrl('/lists');
   }
-
   getListSortedByPin() {
     return this.lists.sort(function(x, y) {return (x.pinned === y.pinned) ? 0 : x.pinned ? -1 : 1; });
   }
@@ -162,6 +160,14 @@ export class TasksServiceService {
         break;
       }
     }
+  }
+
+  getTasksSortedById() {
+    return this.tasks.sort((x, y) => {return x.id - y.id; });
+  }
+
+  getListsSortedById() {
+      return this.lists.sort((x, y) => {return x.id - y.id; });
   }
 
   private getIndexById(target, id: number) {

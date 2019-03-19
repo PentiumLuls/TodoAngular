@@ -54,7 +54,7 @@
       "checked": true
     },
     {
-      "checked": true,
+      "checked": false,
       "id": 6,
       "name": "Add more style to app",
       "list": 2
