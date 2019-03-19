@@ -12,11 +12,12 @@ export class TaskComponent implements OnInit {
 
   @Input() task: any;
   @Input() index: number;
+  @Input() currentListId: number;
   @Output() deleteTask = new EventEmitter();
   @Output() taskClicked = new EventEmitter();
   @Output() changeTaskName = new EventEmitter();
 
-  constructor(private tasksService: TasksServiceService) {
+  constructor() {
   }
 
   ngOnInit() {

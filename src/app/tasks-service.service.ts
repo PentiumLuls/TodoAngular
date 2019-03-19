@@ -27,10 +27,10 @@ export class TasksServiceService {
 
   // SERVER HANDLERS
   getTasksFromDB(): Observable<Task[]> {
-    return this.http.get(this.ROOT_URL + '/tasks')
-      .pipe(map(data => {
-        return data.map((task: any) => new Task(task.id, task.name, task.list, task.checked));
-      }));
+    return this.http.get<Task[]>(this.ROOT_URL + '/tasks')
+      // .pipe(map(data => {
+      //   return data.map((task: any) => new Task(task.id, task.name, task.list, task.checked));
+      // }));
   }
 
   getListsFromDB(): Observable<List[]> {

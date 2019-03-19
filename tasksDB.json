@@ -55,24 +55,6 @@
     },
     {
       "checked": false,
-      "id": 6,
-      "name": "Add more style to app",
-      "list": 2
-    },
-    {
-      "checked": true,
-      "id": 7,
-      "name": "Make pinned lists",
-      "list": 2
-    },
-    {
-      "checked": true,
-      "id": 8,
-      "name": "Make redirect to lists/",
-      "list": 2
-    },
-    {
-      "checked": false,
       "id": 9,
       "name": "Get a nap... a good one))",
       "list": 1
@@ -88,6 +70,30 @@
       "id": 11,
       "name": "In preview mode displayed only 5 tasks, so you wouldn`t see this",
       "list": 0
+    },
+    {
+      "checked": false,
+      "id": 12,
+      "name": "interfaces instead of task/list",
+      "list": 2
+    },
+    {
+      "checked": true,
+      "id": 13,
+      "name": "remove unused dependencies",
+      "list": 2
+    },
+    {
+      "checked": false,
+      "id": 14,
+      "name": "Pass object instead index/id",
+      "list": 2
+    },
+    {
+      "checked": false,
+      "id": 15,
+      "name": "Card component in preview",
+      "list": 2
     }
   ]
 }

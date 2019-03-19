@@ -8,6 +8,7 @@
     id="task-lists">
   <app-list *ngFor="let list of tasksService.getListsSortedById()"
             [list]="list"
+            [currentListId]="tasksService.currentListId"
             (deleteList)="deleteList($event)"
             (click)="changeCurrentList(list.id)">
   </app-list>

@@ -9,9 +9,10 @@ import {TasksServiceService} from '../tasks-service.service';
 export class ListComponent implements OnInit {
 
   @Input() list: any;
+  @Input() currentListId: any;
   @Output() deleteList = new EventEmitter();
 
-  constructor(private tasksService: TasksServiceService) {
+  constructor() {
   }
 
   ngOnInit() {
