@@ -8,10 +8,11 @@ import {NewItemAddingInputComponent} from '../new-item-adding-input/new-item-add
   styleUrls: ['./lists-list.component.css']
 })
 export class ListsListComponent implements OnInit {
-  @ViewChild(NewItemAddingInputComponent) inputChild: NewItemAddingInputComponent;
-  private placeholder = 'Title';
 
-  constructor(private tasksService: TasksServiceService) {
+  @ViewChild(NewItemAddingInputComponent) inputChild: NewItemAddingInputComponent;
+  placeholder = 'Title';
+
+  constructor(public tasksService: TasksServiceService) {
   }
 
   ngOnInit() {

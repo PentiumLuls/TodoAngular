@@ -8,7 +8,7 @@ import {List} from '../List';
   styleUrls: ['./lists-preview.component.css']
 })
 export class ListsPreviewComponent implements OnInit {
-  constructor(private tasksService: TasksServiceService) {
+  constructor(public tasksService: TasksServiceService) {
   }
 
   ngOnInit() {

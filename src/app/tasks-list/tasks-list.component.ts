@@ -10,10 +10,10 @@ import {NewItemAddingInputComponent} from '../new-item-adding-input/new-item-add
 export class TasksListComponent implements OnInit {
   @ViewChild(NewItemAddingInputComponent) inputChild: NewItemAddingInputComponent;
 
-  private placeholder = 'There would be your task...';
+  placeholder = 'There would be your task...';
   inputValue = '';
 
-  constructor(private tasksService: TasksServiceService) {
+  constructor(public tasksService: TasksServiceService) {
   }
 
   addNewTask() {
